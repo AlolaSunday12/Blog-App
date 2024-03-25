@@ -25,7 +25,7 @@ app.use(session({
     secret: 'jwt-secret-key',
     resave: false,
     saveUninitialized: false,
-    // Add any session configuration options as needed
+    // Add any session configuration options as needed in application
 }));
 
 // Database connection setup
