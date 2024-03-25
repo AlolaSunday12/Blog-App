@@ -3,6 +3,11 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({
+    title: String,
+    description: String,
+    file: String,
+    email: String
+    /*
     title: {
         type: String,
         required: true,
@@ -15,11 +20,13 @@ const blogSchema = new Schema({
         type: String,
         required: true,
     },
+    
     user: {
         type: mongoose.Types.ObjectId,
         ref: "User",
         required: true,
-    }     
+    }
+    */ 
 });
 
 export default mongoose.model("Blog", blogSchema);
