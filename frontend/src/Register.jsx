@@ -4,7 +4,7 @@ import './index.css';
 import axios from 'axios'
 
 function Register() {
-    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -14,11 +14,11 @@ function Register() {
     async function register() {
         try {
             setLoading(true);
-            const user = { name, email, password };
-            const result = await axios.post('http://localhost:5000/api/user/register', user);
+            const user = { username, email, password };
+            const result = await axios.post('http://localhost:5000/register', user);
             setLoading(false);
             setSuccess(true);
-            setName('');
+            setUsername('');
             setEmail('');
             setPassword('');
 
@@ -39,9 +39,9 @@ function Register() {
                 register();
             }}>
                 <div>
-                    <label htmlFor="name">Name:</label> <br />
-                    <input type="text" id="name" placeholder='Enter Name'
-                    onChange={e => setName(e.target.value)} autoComplete="name" />
+                    <label htmlFor="Username">Username:</label> <br />
+                    <input type="text" id="Username" placeholder='Enter Username'
+                    onChange={e => setUsername(e.target.value)} autoComplete="Username" />
                 </div>
                 <br />
                 <div>

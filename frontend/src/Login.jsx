@@ -13,35 +13,35 @@ function Login() {
     const [error, setError] = useState(false);
     //const navigate = useNavigate()
     
-
+   axios.defaults.withCredentials = true;
     async function login() {
         const user = {
-               email,
-               password,
-           }
-           try {
-               setLoading(true)
-               const response = await axios.post('http://localhost:5000/api/user/login', user);
-               const result = response.data;
-               setLoading(false)
-               setError(false)
+            email,
+            password,
+        }
+        try {
+            setLoading(true)
+            const response = await axios.post('http://localhost:5000/login', user);
+            const result = response.data;
+            setLoading(false)
+            setError(false)
 
-               setEmail('');
-               setPassword('');
+            setEmail('');
+            setPassword('');
 
-               // Redirect to home page after successful login
-               //useNavigate.push('/');
+            // Redirect to home page after successful login
+            //useNavigate.push('/');
 
-               localStorage.setItem('currentUser', JSON.stringify(result)); // Set currentUser in localStorage
-               window.location.href = '/';
-               
-           } catch (error) {
-               console.log(error)
-               setLoading(false)
-               setError(true)
-           }
+            localStorage.setItem('currentUser', JSON.stringify(result)); // Set currentUser in localStorage
+            window.location.href = '/';
+            
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+            setError(true)
+        }
 
-   }
+}
   return (
     <div className='signup_container'>
         <div className='signup_form'>

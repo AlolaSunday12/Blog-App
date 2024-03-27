@@ -1,4 +1,4 @@
-import { useState , useContext } from 'react';
+import { useState, useContext  } from 'react';
 import axios from 'axios';
 import { userContext } from './App.jsx'
 
@@ -11,7 +11,7 @@ function CreatePost ()
     const [ loading, setLoading ] = useState( false );
     const [ success, setSuccess ] = useState( false );
     const [ error, setError ] = useState( false );
-    const { user, setUser } = useContext(userContext);
+    const user  = useContext(userContext);
 
 
     async function createPost ()
@@ -22,17 +22,13 @@ function CreatePost ()
             const formData = new FormData();
             formData.append( 'title', title );
             formData.append( 'description', description );
+            formData.append( 'email', user.email );
             formData.append( 'file', file );
             
 
-            if (user && user.email) {
-                formData.append('email', user.email);
-              } else {
-                console.log('User email is not available');
-                // Handle this case as needed (e.g., show an error message)
-              }
+            
 
-            const result = await axios.post( 'http://localhost:5000/api/blog/create', formData );
+            const result = await axios.post( 'http://localhost:5000/create', formData );
             setLoading( false );
             setSuccess( true );
             setTitle( '' );

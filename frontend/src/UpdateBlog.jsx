@@ -1,6 +1,6 @@
 import { useState , useEffect } from 'react';
 import axios from 'axios';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 
 function UpdatePost() {
     const [title, setTitle] = useState();
@@ -9,6 +9,7 @@ function UpdatePost() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
+    const navigate = useNavigate()
 
     const {id} = useParams()
     
@@ -17,13 +18,14 @@ function UpdatePost() {
     async function updatePost() {
         try {
             setLoading(true);
-            const result = await axios.put('http://localhost:5000/api/blog/updateBlog/'+id, {title , description});
+            const result = await axios.put('http://localhost:5000/updateBlog/'+id, {title , description});
             setLoading(false);
             setSuccess(true);
             setTitle('');
             setDescription('');           
-
-            window.location.href='/'
+             
+            navigate('/')
+            //window.location.href='/'
         } catch (error) {
             console.error('Error creating post:', error);
             setLoading(false);
@@ -33,7 +35,7 @@ function UpdatePost() {
 
     useEffect(() => {
     
-        axios.get(`http://localhost:5000/api/blog/getblogbyid/${id}`)
+        axios.get(`http://localhost:5000/getblogbyid/${id}`)
         .then(result => {
             setTitle(result.data.title)
             setDescription(result.data.description)

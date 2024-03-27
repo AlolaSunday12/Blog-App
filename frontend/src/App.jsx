@@ -14,19 +14,23 @@ export const userContext = createContext();
 axios.defaults.withCredentials = true;
 
 function App() {
-  const [user, setUser] = useState(null); // Initialize user state to null
+  const [user, setUser] = useState({}); // Initialize user state to null
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/user') // Adjust the URL to match your backend route
+    axios.get('http://localhost:5000/') // Adjust the URL to match your backend route
       .then(response => {
-        setUser(response.data.user); // Set user data
+        setUser(response.data); // Set the user state here
       })
-      .catch(err => console.error('Error fetching user data:', err));
-  }, []);
+      .catch(error => {
+        // Handle error if needed
+        console.error('Error fetching user data:', error);
+      });
+  }, [])
+  
   return (
     
-     <userContext.Provider value={{user , setUser}}>
-      {user !== null ? ( // Render only when user data is available
+     <userContext.Provider value={user}>
+      
       <BrowserRouter>
       <Navbar/>
      <Routes>
@@ -36,11 +40,10 @@ function App() {
       <Route path="/create" element={<CreatePost />}></Route>
       <Route path="/blog/:id" element={<Blog />}></Route>
       <Route path="/updateBlog/:id" element={<UpdateBlog />}></Route>
+      
       </Routes>
       </BrowserRouter>
-      ) : (
-        <p>Loading...</p> // Add loading indicator while user data is being fetched
-      )}
+      
      </userContext.Provider>
     
   )

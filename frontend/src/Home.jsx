@@ -9,7 +9,7 @@ function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/blog/getblogs`, {
+    axios.get(`http://localhost:5000/getblogs`, {
       withCredentials: true  // Include credentials in the request
     })
       .then(response => {
@@ -25,10 +25,9 @@ function Home() {
 
   return (
     <div className="blogs_container">
-      
       {
         blogs.map(blog => (
-          <Link to={`/blog/${blog._id}`} key={blog._id} className="blog" >
+          <Link to={`/blog/${blog._id}`} key={blog._id} className="blog">
             <img src={`http://localhost:5000/Images/${blog.file}`} alt="" />
             <div className="blog_text">
               <h2>{blog.title}</h2>
@@ -37,7 +36,6 @@ function Home() {
           </Link>
         )
       )}
-      
     </div>
   );
 }
