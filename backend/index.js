@@ -27,7 +27,7 @@ app.use(session({
     secret: 'jwt-secret-key',
     resave: false,
     saveUninitialized: false,
-    // Add any session configuration options as needed
+    // Add any session configuration options as needed in application
 }));
 
 // Database connection setup
@@ -173,4 +173,3 @@ app.get('/getblogs', async (req, res) => {
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log('node server started using nodemon'));
-
