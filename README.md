@@ -27,7 +27,7 @@ npm install prop-types
 npm install Bootstrap
 Navbar design - css
 
-Backend: 
+For Backend: 
 cd backend
 npm install
 npm install cors
@@ -61,4 +61,4 @@ There is also a Logout button provided for logging out Users once they wish to l
 
 COLLABORATORS:
 Alola Sunday (AlolaSunday12) alolasj@gmail.com
-Awolaja Gbenga (Sunnet4)awolaja.sunday@gmail.com
+Awolaja Gbenga (Sunnet4)awolaja.sunday@gmail.com 08168591133
