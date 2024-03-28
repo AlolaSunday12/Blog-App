@@ -71,9 +71,6 @@ function Login() {
                 </div>
                 <button type="submit" className="signup_btn">Login</button>
             </form>
-            <br></br>
-            <p>Not Registered</p>
-            <Link to="/register"><button type="button">signup</button></Link>
         </div>
     </div>
     </div>

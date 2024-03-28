@@ -32,8 +32,10 @@ function Blog() {
     <div className='blog_container'>
        <div className='blog_blog'>
        {blog.file && <img src={`http://localhost:5000/Images/${blog.file}`} alt="" />}
+        <div className="blog_blog_text">
         <h1>{blog.title}</h1>
         <p>{blog.description}</p>
+        </div>
         <div>
          { user.email === blog.email ?
             <>
