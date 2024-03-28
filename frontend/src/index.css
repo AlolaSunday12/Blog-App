@@ -1,3 +1,4 @@
+/* Reset default padding, margin, and box-sizing for all elements */
 * {
   padding: 0px;
   margin: 0px;

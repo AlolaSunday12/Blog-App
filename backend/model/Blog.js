@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+// Create a schema object using Mongoose
 const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
