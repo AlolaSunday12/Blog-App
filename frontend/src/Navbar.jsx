@@ -25,10 +25,10 @@ function Navbar() {
       <div>
         <Link to='/' className='link'>Home</Link>
         { user.username ?
-          <Link to='create' className='link'>Create</Link>
+          <Link to='create' className='link'>Create-Blog</Link>
         : <></>
         }
-        <a href='' className='link'>Contact</a>
+        
       </div>
       {user.username ? 
         <div>
