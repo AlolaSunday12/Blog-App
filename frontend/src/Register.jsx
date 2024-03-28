@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import {Link} from 'react-router-dom';
 import './index.css';
 import axios from 'axios'
 import Success from './Components/Success.jsx'
 import Loader from './Components/Loader.jsx'
+import swal from 'sweetalert2'
 
 function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -17,20 +16,22 @@ function Register() {
     async function register() {
         try {
             setLoading(true);
-            const user = { username, email, password, confirmPassword };
+            const user = { username, email, password };
             const result = await axios.post('http://localhost:5000/register', user);
             setLoading(false);
             setSuccess(true);
             setUsername('');
             setEmail('');
             setPassword('');
-            setConfirmPassword('');
-
-            window.location.href = '/login';
+            
+            swal.fire('congratulation' , 'Your Registration is Successfully' , 'success').then(result =>{
+                window.location.href='/'
+            })
         } catch (error) {
             console.log(error);
             setLoading(false);
             setError(true);
+            swal.fire('Oops' , 'Something went wrong' , 'error')
         }
     }
   return (
@@ -63,11 +64,6 @@ function Register() {
                     onChange={e => setPassword(e.target.value)} autoComplete="new-password" />
                 </div>
                 
-                <div>
-                    <label htmlFor="confirmPassword">confirmPassword:</label> <br />
-                    <input type="password" id="confirmPassword" placeholder='******'
-                    onChange={e => setConfirmPassword(e.target.value)} autoComplete="new-confirmPassword" />
-                </div>
                 <button type="submit" className="signup_btn">Register</button>
             </form>
            

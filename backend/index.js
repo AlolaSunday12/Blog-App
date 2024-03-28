@@ -88,16 +88,27 @@ app.post('/create', verifyUser, upload.single('file'), (req, res) => {
   })
 
 app.post('/register', (req, res) => {
-    const {username, email, password}= req.body;
+    const { username, email, password } = req.body;
 
-    bcrypt.hash(password, 10)
-    .then(hash => {
-        User.create({username, email, password: hash})
-        .then(user => res.json(user))
-        .catch(err => res.json(err))
-     }).catch(err => console.log(err))
-    
-})
+    // Check if the email already exists in the database
+    User.findOne({ email: email })
+        .then(existingUser => {
+            if (existingUser) {
+                // Email already exists, return an error
+                return res.status(400).json({ message: 'Email address is already registered.' });
+            } else {
+                // Email does not exist, proceed with registration
+                bcrypt.hash(password, 10)
+                    .then(hash => {
+                        User.create({ username, email, password: hash })
+                            .then(user => res.json(user))
+                            .catch(err => res.status(500).json({ message: 'An error occurred during registration.' }));
+                    })
+                    .catch(err => res.status(500).json({ message: 'An error occurred during password hashing.' }));
+            }
+        })
+        .catch(err => res.status(500).json({ message: 'An error occurred during email check.' }));
+});
 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
