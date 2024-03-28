@@ -13,7 +13,8 @@ function Navbar() {
        axios.get('http://localhost:5000/logout')
        .then(res => {
         if(res.data === "Success") {
-       //navigate('/'); // Redirect to home page
+       //navigate('/'); // Redirect to home 
+       localStorage.removeItem('currentUser');
         window.location.href='/';
         }
        }).catch(err => console.log(err))
@@ -38,7 +39,7 @@ function Navbar() {
        : 
         <div>
           <h5>
-            <Link to='/register' className='link'>Register</Link>/<Link to='/login' className='link'>Login</Link>
+            <Link to='/register' className='link'>Register</Link> <Link to='/login' className='link'>Login</Link>
           </h5>
         </div>
       }
