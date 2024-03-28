@@ -2,11 +2,14 @@ import { useState } from 'react';
 import {Link} from 'react-router-dom';
 import './index.css';
 import axios from 'axios'
+import Success from './Components/Success.jsx'
+import Loader from './Components/Loader.jsx'
 
 function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -14,13 +17,14 @@ function Register() {
     async function register() {
         try {
             setLoading(true);
-            const user = { username, email, password };
+            const user = { username, email, password, confirmPassword };
             const result = await axios.post('http://localhost:5000/register', user);
             setLoading(false);
             setSuccess(true);
             setUsername('');
             setEmail('');
             setPassword('');
+            setConfirmPassword('');
 
             window.location.href = '/login';
         } catch (error) {
@@ -30,9 +34,12 @@ function Register() {
         }
     }
   return (
+    <div>
+        {loading && (<Loader/>)}
     <div className='signup_container'>
         <div className='signup_form'>
-            <h2>Sign Up</h2>
+        {success && (<Success message='Registration successfull'/>)}
+            <h2>Register</h2>
             <br />
             <form onSubmit={(e) => {
                 e.preventDefault();
@@ -43,24 +50,29 @@ function Register() {
                     <input type="text" id="Username" placeholder='Enter Username'
                     onChange={e => setUsername(e.target.value)} autoComplete="Username" />
                 </div>
-                <br />
+                
                 <div>
                     <label htmlFor="email">Email:</label> <br />
                     <input type="email" id="email" placeholder='Enter email'
                     onChange={e => setEmail(e.target.value)} autoComplete="email" />
                 </div>
-                <br />
+                
                 <div>
                     <label htmlFor="password">Password:</label> <br />
                     <input type="password" id="password" placeholder='******'
                     onChange={e => setPassword(e.target.value)} autoComplete="new-password" />
                 </div>
-                <button type="submit" className="signup_btn">Sign Up</button>
+                
+                <div>
+                    <label htmlFor="confirmPassword">confirmPassword:</label> <br />
+                    <input type="password" id="confirmPassword" placeholder='******'
+                    onChange={e => setConfirmPassword(e.target.value)} autoComplete="new-confirmPassword" />
+                </div>
+                <button type="submit" className="signup_btn">Register</button>
             </form>
-            <br></br>
-            <p>Already have account.</p>
-            <Link to="/login"><button type="button">Login</button></Link>
+           
         </div>
+    </div>
     </div>
   )
 }
