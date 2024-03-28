@@ -1,6 +1,7 @@
 import { useState, useContext  } from 'react';
 import axios from 'axios';
 import { userContext } from './App.jsx'
+import swal from 'sweetalert2'
 
 
 function CreatePost ()
@@ -35,12 +36,15 @@ function CreatePost ()
             setDescription( '' );
             setFile( null );
 
-            window.location.href = '/'
+            swal.fire('congratulation' , 'Your Blog is Created Successfully' , 'success').then(result =>{
+                window.location.href='/'
+            })
         } catch ( error )
         {
             console.error( 'Error creating post:', error );
             setLoading( false );
             setError( true );
+            swal.fire('Oops' , 'Something went wront' , 'error')
         }
     }
 
