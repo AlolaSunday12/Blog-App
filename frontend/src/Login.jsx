@@ -2,11 +2,14 @@ import { useState } from 'react'
 import {Link } from 'react-router-dom';
 import './index.css';
 import axios from 'axios'
+import Loader from './Components/Loader.jsx';
+import Error from './Components/Error.jsx'
+
 
 axios.defaults.withCredentials = true;
 
 function Login() {
-    //const history = useNavigate(); // Access to history object
+    //const history = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -43,6 +46,9 @@ function Login() {
 
 }
   return (
+    <div>
+        {error && (<Error/>)}
+        {loading && (<Loader/>)}
     <div className='signup_container'>
         <div className='signup_form'>
             <h2>Login</h2>
@@ -69,6 +75,7 @@ function Login() {
             <p>Not Registered</p>
             <Link to="/register"><button type="button">signup</button></Link>
         </div>
+    </div>
     </div>
   )
 }
