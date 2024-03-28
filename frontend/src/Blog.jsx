@@ -37,8 +37,8 @@ function Blog() {
         <div>
          { user.email === blog.email ?
             <>
-            <Link to ={`/updateblog/${blog._id}`}>Update</Link>
-           <button onClick={e => handleDelete (blog._id)}>Delete</button>
+            <Link to ={`/updateblog/${blog._id}`} className="update_btn">Update</Link>
+           <button onClick={e => handleDelete (blog._id)} className="delete_btn">Delete</button>
             </> : <></>
            }      
            
