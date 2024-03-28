@@ -1,6 +1,7 @@
 import { useState , useEffect } from 'react';
 import axios from 'axios';
 import {useParams, useNavigate} from 'react-router-dom';
+import swal from 'sweetalert2'
 
 function UpdatePost() {
     const [title, setTitle] = useState();
@@ -24,12 +25,16 @@ function UpdatePost() {
             setTitle('');
             setDescription('');           
              
-            navigate('/')
+            swal.fire('congratulation' , 'Your Blog Has Been Updated Successfully' , 'success').then(result =>{
+                navigate('/')
+            })
+            
             //window.location.href='/'
         } catch (error) {
             console.error('Error creating post:', error);
             setLoading(false);
             setError(true);
+            swal.fire('Oops' , 'Something went wront' , 'error')
         }
     }
 
