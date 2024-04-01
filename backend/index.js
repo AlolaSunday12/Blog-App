@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-//const router = require('./routes/user-routes.js');
-//const blogRouter = require('./routes/blog-routes.js');
 const Blog = require('./model/Blog');
 const User = require('./model/User');
 const cookieParser = require("cookie-parser");
@@ -27,7 +25,6 @@ app.use(session({
     secret: 'jwt-secret-key',
     resave: false,
     saveUninitialized: false,
-    // Add any session configuration options as needed in the application
 }));
 
 // Database connection setup
