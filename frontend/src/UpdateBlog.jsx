@@ -1,7 +1,7 @@
 import { useState , useEffect } from 'react';
 import axios from 'axios';
 import {useParams, useNavigate} from 'react-router-dom';
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
 
 function UpdatePost() {
     const [title, setTitle] = useState();
@@ -29,7 +29,6 @@ function UpdatePost() {
                 navigate('/')
             })
             
-            //window.location.href='/'
         } catch (error) {
             console.error('Error creating post:', error);
             setLoading(false);
