@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './index.css';
@@ -10,10 +10,10 @@ function Home() {
 
   useEffect(() => {
     axios.get(`http://localhost:5000/getblogs`, {
-      withCredentials: true  // Include credentials in the request
+      withCredentials: true 
     })
       .then(response => {
-        const { blogs } = response.data; // Accessing the blogs array from the response data object
+        const { blogs } = response.data; 
         setBlogs(blogs);
         setLoading(false);
       })
