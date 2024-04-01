@@ -14,15 +14,14 @@ export const userContext = createContext();
 axios.defaults.withCredentials = true;
 
 function App() {
-  const [user, setUser] = useState({}); // Initialize user state to null
+  const [user, setUser] = useState({}); 
 
   useEffect(() => {
-    axios.get('http://localhost:5000/') // Adjust the URL to match your backend route
+    axios.get('http://localhost:5000/') 
       .then(response => {
-        setUser(response.data); // Set the user state here
+        setUser(response.data);
       })
       .catch(error => {
-        // Handle error if needed
         console.error('Error fetching user data:', error);
       });
   }, [])
