@@ -15,7 +15,7 @@ function Register() {
     const [success, setSuccess] = useState(false);
 
     async function register() {
-        if(password===confirmPassword) {
+        if(password === confirmPassword) {
         try {
             setLoading(true);
             const user = { username, email, password };
@@ -72,7 +72,7 @@ function Register() {
                 </div>
 
                 <div>
-                    <label htmlFor="confirmpassword">confirmPassword:</label> <br />
+                    <label htmlFor="confirmpassword">Confirm Password:</label> <br />
                     <input type="password" id="confirmpassword" placeholder='******'
                     onChange={e => setConfirmPassword(e.target.value)} autoComplete="new-password" />
                 </div>
