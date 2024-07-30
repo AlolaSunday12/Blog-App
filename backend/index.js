@@ -152,6 +152,13 @@ app.get('/getblogs', async (req, res) => {
     }
   });
 
+  app.get('/getblogbyid/:id', async (req, res) => {
+    const id = req.params.id;
+    Blog.findById({_id: id})
+    .then(blog => res.json(blog))
+    .catch(err => console.log(err))
+  });
+
   app.put('/updateBlog/:id', async (req, res) => {
     const id = req.params.id;
     
@@ -161,20 +168,6 @@ app.get('/getblogs', async (req, res) => {
         })
     .then(result => res.json(result))
     .catch(err => res.json(err))
-});
-
-app.get('/getblogbyid/:id', async (req, res) => {
-    const id = req.params.id;
-    try {
-        const blog = await Blog.findById(id);
-        if (!blog) {
-            return res.status(404).json({ message: "Blog not found" });
-        }
-        return res.status(200).json(blog);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Internal Server Error" });
-    }
 });
 
     app.delete('/deleteBlog/:id', async (req, res) => {
