@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-//const router = require('./routes/user-routes.js');
-//const blogRouter = require('./routes/blog-routes.js');
 const Blog = require('./model/Blog');
 const User = require('./model/User');
 const cookieParser = require("cookie-parser");
@@ -12,7 +10,6 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-require('dotenv').config();
 
 const app = express()
 app.use(express.json())
@@ -28,12 +25,11 @@ app.use(session({
     secret: 'jwt-secret-key',
     resave: false,
     saveUninitialized: false,
-    // Add any session configuration options as needed in the application
 }));
 
 // Database connection setup
-
-mongoose.connect(process.env.mongoURL); 
+const mongoURL = 'mongodb+srv://femi:alolasj@cluster0.uq1r6xc.mongodb.net/blog?retryWrites=true&w=majority';
+mongoose.connect(mongoURL); 
 
 const connection = mongoose.connection;
 
@@ -153,6 +149,13 @@ app.get('/getblogs', async (req, res) => {
       console.error(error);
       return res.status(500).json({ message: "Internal Server Error" });
     }
+  });
+
+  app.get('/getblogbyid/:id', async (req, res) => {
+    const id = req.params.id;
+    Blog.findById({_id: id})
+    .then(blog => res.json(blog))
+    .catch(err => console.log(err))
   });
 
   app.put('/updateBlog/:id', async (req, res) => {

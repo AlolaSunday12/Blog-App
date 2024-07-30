@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import {Link } from 'react-router-dom';
 import './index.css';
 import axios from 'axios'
 import Loader from './Components/Loader.jsx';
 import Error from './Components/Error.jsx'
+import swal from 'sweetalert2'
 
 
 axios.defaults.withCredentials = true;
@@ -42,6 +42,7 @@ function Login() {
             console.log(error)
             setLoading(false)
             setError(true)
+            swal.fire('Oops' , 'Incorrect Password' , 'error')
         }
 
 }
