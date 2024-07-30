@@ -1,74 +1,64 @@
-Blog App Documentation
+//Blog-Ap
+
+BLOG APP
 
 Project name : Blog-App
 
-Overview
 
-The Blog App is a web application built to enable users to create, update, and delete (CRUDE) blog posts and also view all users blog posts. The application is divided into three major parts: client (frontend), server (backend), and database (MongoDB). Each part works together to create a functioning application.
+The building of the app is divided into 3 major parts, client, server and database, they all work together to create a functioning application: the client provides the user interface and handles user interactions, the server processes requests, executes business logic, and communicates with the database to retrieve or store data, and the database stores and manages the application's data. We use javascript for frontend, Nodejs for backend and NoSqL(mongoDB) for database
 
-Technologies Used:
-       Frontend: JavaScript (React)
-       Backend: Node.js (Express)
-       Database: MongoDB
+To run the App:
+frontend  - npm run dev
+Backend - npm start
 
-Setup Instructions:
-  Client (Frontend):
-       Navigate to the frontend directory: cd frontend
-       Initialize a new React app: npm init vite.
-       Install dependencies:
-          npm install
-          npm install axios 
-          npm install bootstrap 
-          npm install sweetalert2
-          npm install react-dom
-          npm install react-router-dom
-          npm install react-spinners
-          npm install prop-types
+Client:
+To create React App - npm init vite  
+ cd Blog-APP 
+cd frontend
+npm init vite
+npm install
+npm install axios 
+npm install bootstrap 
+npm install sweetalert2
+npm install react-dom
+npm install react-router-dom
+npm install react-spinners
+npm install prop-types
+npm install Bootstrap
+Navbar design - css
 
-Design Navbar using - CSS
+For Backend: 
+cd backend
+npm install
+npm install cors
+npm install bcrypt
+npm install multer
+npm install nodemon
+npm install cookie-parser
+npm install express
+npm install mongoose
+npm install jsonwebtoken
+npm install path
 
-Backend:
-    Navigate to the backend directory: cd backend
-    Install dependencies:
-        npm install cors
-        npm install bcrypt
-        npm install multer
-        npm install nodemon
-        npm install cookie-parser
-        npm install express
-        npm install mongoose
-        npm install jsonwebtoken
-        npm install path
-    Restart the server after configuring the database.
-    Create a new file for database connection.
-    Create a folder called model for User and Blog Schema.
+Database config
+Create an account on mongoDB Atlass and login with your email to create database.
+Go to connect and click on mongoDB driver as connecting string.
+Go to database access to create a new database username and password and insert both the username and password to the connecting string.
+Create a database collection in mongoDB
+npm mongoose.
+Restart the server.
+Create a new file for database connection
+Create a folder called models for User and Blog Schema.
 
-Database Configuration:
-    Create an account on MongoDB Atlas.
-    Generate a connecting string from the MongoDB driver.
-    Create a new database username and password in MongoDB Atlas.
-    Insert the username and password into the connecting string.
-    Create a database collection
+HOW THE APP WORK
 
-How the App Works
-
-User Registration/Login:
-    Users must register with details like username, email, password, and confirm password.
-    Once registered, users can log in using their email and password.
-
-Creating Posts:
-    Upon login, users can create a post with a title, description, and image file.
-
-Viewing Posts:
-    Users can view all posts made by different users on the Home page.
-
-Updating/Deleting Posts:
-    Users can update or delete their own posts at any time.
-    Users cannot update or delete posts made by other users due to conditional rendering.
-
-Logout:
-    Users can log out using the provided logout button, which also clears cookies from the browser.
+To use the Blog-App, you must be a User as the Create post button is hidden until you LOGIN to the App
+Each user needs to Register with details like Username, Email, password and confirm password then proceed to Login page, the users needs to input their Login details like Email and password.
+Having access to Bolg-App, Users will be able to Create a post with Title, description and file(image)
+ Users can update or delete their post at any time but wont be able to update or delete another User post because of condition rendered to the post
+There is Home button where Users can view all the post made by different Users
+There is also a Logout button provided for logging out Users once they wish to leave the App and this logout button automatically logout the current user and also clear the cookies from the browser
 
 COLLABORATORS:
-    Alola Sunday (AlolaSunday12)alolasj@gmail.com - 08131552377
-    Awolaja Gbenga (Sunnet4)awolaja.sunday@gmail.com - 08168591133
+Alola Sunday (AlolaSunday12) alolasj@gmail.com
+Awolaja Gbenga (Sunnet4)awolaja.sunday@gmail.com 08168591133

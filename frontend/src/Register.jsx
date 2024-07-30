@@ -9,13 +9,11 @@ function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
 
     async function register() {
-        if(password === confirmPassword) {
         try {
             setLoading(true);
             const user = { username, email, password };
@@ -25,9 +23,8 @@ function Register() {
             setUsername('');
             setEmail('');
             setPassword('');
-            setConfirmPassword('');
             
-            swal.fire('congratulation' , 'Your Registration is Successfull' , 'success').then(result =>{
+            swal.fire('congratulation' , 'Your Registration is Successfully' , 'success').then(result =>{
                 window.location.href='/'
             })
         } catch (error) {
@@ -36,10 +33,6 @@ function Register() {
             setError(true);
             swal.fire('Oops' , 'Something went wrong' , 'error')
         }
-    }
-    else {
-        swal.fire('Oops' , 'Password Not Matched' , 'error')
-    }
     }
   return (
     <div>
@@ -69,12 +62,6 @@ function Register() {
                     <label htmlFor="password">Password:</label> <br />
                     <input type="password" id="password" placeholder='******'
                     onChange={e => setPassword(e.target.value)} autoComplete="new-password" />
-                </div>
-
-                <div>
-                    <label htmlFor="confirmpassword">Confirm Password:</label> <br />
-                    <input type="password" id="confirmpassword" placeholder='******'
-                    onChange={e => setConfirmPassword(e.target.value)} autoComplete="new-password" />
                 </div>
                 
                 <button type="submit" className="signup_btn">Register</button>

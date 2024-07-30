@@ -64,8 +64,7 @@
   background-color: transparent;
   border: none;
   color: white;
-  font-weight: bolder;
-  margin-right: 10px;
+  font-weight: bolder
 }
 .post_form {
   width: 50%;
@@ -185,12 +184,4 @@
   padding: 0.75rem 1.25rem;  
   border: 1px solid transparent;  
   border-radius: 0.25rem; 
-}
-.user-info {
-  display: flex;
-  align-items: center;
-}
-
-.user-info span {
-  margin-right: 10px;
 }

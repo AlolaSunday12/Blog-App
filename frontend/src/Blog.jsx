@@ -27,6 +27,7 @@ function Blog() {
         .catch(err => console.log(err))
     }
     console.log('Comparing emails:', user && user.email, blog.email);
+    
 
   return (
     <div className='blog_container'>

@@ -22,27 +22,28 @@ function Navbar() {
   
   return (
     <div className='navbar-header'>
+      <div><h3>Blog App</h3></div>
       <div>
-        <h3>Blog App</h3>
-      </div>
-      <div className='nav-links'>
-        <Link to='/' className='link'><i className="fas fa-home"></i>Home</Link>
-        {user.username &&
-          <Link to='create' className='link'><i className="fas fa-edit"></i>Create-Blog</Link>
+        <Link to='/' className='link'>Home</Link>
+        { user.username ?
+          <Link to='create' className='link'>Create-Blog</Link>
+        : <></>
         }
+        
       </div>
-      {user.username ?
-        <div className="user-info">
-          <button onClick={handleLogout} className='btn_input'> Logout</button>
-          <span><i className="fa fa-address-book" aria-hidden="true"></i> {user.username}</span>
+      {user.username ? 
+        <div>
+          <input type='button' onClick={handleLogout} value='Logout' className='btn_input'></input>
         </div>
-        :
+      
+       : 
         <div>
           <h5>
             <Link to='/register' className='link'>Register</Link> <Link to='/login' className='link'>Login</Link>
           </h5>
         </div>
       }
+
     </div>
   );
 }
